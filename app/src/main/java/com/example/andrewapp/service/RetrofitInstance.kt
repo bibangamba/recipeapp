@@ -5,7 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Endpoints {
+class RetrofitInstance {
     private val client = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
         .build()
@@ -16,8 +16,8 @@ class Endpoints {
         .client(client)
         .build()
 
-    fun recipeAPI(): RecipesAPIService {
-        return retrofit.create(RecipesAPIService::class.java)
+    fun recipeAPI(): RecipeAPIService {
+        return retrofit.create(RecipeAPIService::class.java)
     }
 
 }

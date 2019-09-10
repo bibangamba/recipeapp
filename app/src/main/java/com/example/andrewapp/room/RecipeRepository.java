@@ -1,29 +1,31 @@
 package com.example.andrewapp.room;
 
-import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import com.example.andrewapp.model.Recipe;
 import com.example.andrewapp.model.RecipesResponse;
-import com.example.andrewapp.service.Endpoints;
+import com.example.andrewapp.service.RecipeAPIService;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
 import java.util.List;
+
+import static com.example.andrewapp.Constants.*;
 
 public class RecipeRepository {
     private static final String TAG = "RecipeRepository";
-    private static final String INSERT = "insert";
-    private static final String UPDATE = "update";
-    private static final String DELETE = "delete";
-    private static final String DELETE_ALL = "delete_all";
-    private RecipeDao mRecipeDao;
 
-    public RecipeRepository(Application application) {
-        mRecipeDao = RecipeDataBase.getInstance(application).recipeDao();
+    private RecipeDao mRecipeDao;
+    private RecipeAPIService mRecipeAPI;
+
+    @Inject
+    public RecipeRepository(RecipeDao recipeDao, RecipeAPIService recipeAPI) {
+        this.mRecipeDao = recipeDao;
+        this.mRecipeAPI = recipeAPI;
     }
 
     public void insert(Recipe recipe) {
@@ -59,7 +61,7 @@ public class RecipeRepository {
     }
 
     private void retrieveRecipesFromWebService() {
-        new Endpoints().recipeAPI().getRecipes().enqueue(new Callback<RecipesResponse>() {
+        mRecipeAPI.getRecipes().enqueue(new Callback<RecipesResponse>() {
             @Override
             public void onResponse(@NotNull Call<RecipesResponse> call, @NotNull Response<RecipesResponse> response) {
                 if (response.body() != null) {
