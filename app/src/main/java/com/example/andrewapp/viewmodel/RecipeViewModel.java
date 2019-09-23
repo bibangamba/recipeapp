@@ -1,43 +1,76 @@
 package com.example.andrewapp.viewmodel;
 
-import androidx.lifecycle.LiveData;
+import android.util.Log;
 import androidx.lifecycle.ViewModel;
 import com.example.andrewapp.model.Recipe;
+import com.example.andrewapp.model.RecipesResponse;
 import com.example.andrewapp.room.RecipeRepository;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 import javax.inject.Inject;
 import java.util.List;
 
-public class RecipeViewModel extends ViewModel {
-    RecipeRepository mRecipeRepository;
+public class RecipeViewModel extends ViewModel implements RecipeViewModelBase {
+    private RecipeRepository mRecipeRepository;
 
     @Inject
     public RecipeViewModel(RecipeRepository repo) {
         this.mRecipeRepository = repo;
     }
 
-    public void insert(Recipe recipe) {
-        mRecipeRepository.insert(recipe);
+    @Override
+    public Single<Long> insert(Recipe recipe) {
+        return mRecipeRepository.insert(recipe);
     }
 
-    public void insertRecipes(List<Recipe> recipes) {
-        mRecipeRepository.insertRecipes(recipes);
+    @Override
+    public Single<List<Long>> insertRecipes(List<Recipe> recipes) {
+        return mRecipeRepository.insertRecipes(recipes);
     }
 
-    public void update(Recipe recipe) {
-        mRecipeRepository.update(recipe);
+    @Override
+    public Completable update(Recipe recipe) {
+        return mRecipeRepository.update(recipe);
     }
 
-    public void delete(Recipe recipe) {
-        mRecipeRepository.delete(recipe);
+    @Override
+    public Single<Integer> delete(Recipe recipe) {
+        return mRecipeRepository.delete(recipe);
     }
 
-    public LiveData<List<Recipe>> getAllRecipes() {
+    @Override
+    public Flowable<List<Recipe>> getAllRecipes() {
         return mRecipeRepository.getAllRecipes();
     }
 
-    public void deleteAllRecipes() {
-        mRecipeRepository.deleteAllRecipes();
+    @Override
+    public Single<Integer> deleteAllRecipes() {
+        return mRecipeRepository.deleteAllRecipes();
+    }
+
+    @Override
+    public void initialPopulateLocalDatabase() {
+        Consumer<RecipesResponse> getRecipesOnNext = recipesResponse -> {
+            List<Recipe> recipes = recipesResponse.getRecipes();
+            if (!recipes.isEmpty()) {
+                insertRecipes(recipes).subscribe();
+            } else {
+                //trigger error/info message to UI
+                Log.d("##########", "retrieving recipes from web API returned an empty list");
+            }
+        };
+
+        Consumer<Throwable> getRecipesOnError = throwable -> {
+            //propagate error to view layer
+            Log.d("##########", "Error on retrieving recipes from web API");
+        };
+        mRecipeRepository.retrieveRecipesFromWebService()
+                .subscribeOn(Schedulers.io())
+                .subscribe(getRecipesOnNext, getRecipesOnError);
     }
 
 }

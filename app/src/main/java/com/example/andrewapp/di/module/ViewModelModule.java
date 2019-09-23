@@ -11,8 +11,6 @@ import dagger.multibindings.IntoMap;
 
 @Module
 public abstract class ViewModelModule {
-    //TODO: all the examples I've seen put this dependency in it's own class.
-    // Is this a requirement or just a convention
     @Binds
     abstract ViewModelProvider.Factory bindsViewModelFactory(RecipeViewModelFactory factory);
 
