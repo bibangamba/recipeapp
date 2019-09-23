@@ -2,9 +2,7 @@ package com.example.andrewapp.model
 
 import com.google.gson.annotations.SerializedName
 
-class RecipesResponse {
-
+data class RecipesResponse(
     @SerializedName("results")
-    lateinit var recipes: List<Recipe>
-
-}
+    val recipes: List<Recipe>
+)
