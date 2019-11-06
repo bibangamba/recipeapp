@@ -1,7 +1,7 @@
 package com.example.andrewapp.room;
 
-import com.example.andrewapp.model.Recipe;
-import com.example.andrewapp.model.RecipesResponse;
+import com.example.andrewapp.data.Recipe;
+import com.example.andrewapp.data.RecipesResponse;
 import com.example.andrewapp.service.RecipeAPIService;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;

@@ -1,10 +1,10 @@
-package com.example.andrewapp.view
+package com.example.andrewapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.example.andrewapp.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.andrewapp.authentication.GoogleSignInActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, GoogleSignInActivity::class.java))
         }, 3000)
     }
 }
