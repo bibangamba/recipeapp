@@ -1,8 +1,7 @@
 package com.example.andrewapp.service
 
-import com.example.andrewapp.model.RecipesResponse
+import com.example.andrewapp.data.RecipesResponse
 import io.reactivex.Flowable
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface RecipeAPIService {

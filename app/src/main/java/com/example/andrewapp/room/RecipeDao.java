@@ -1,7 +1,7 @@
 package com.example.andrewapp.room;
 
 import androidx.room.*;
-import com.example.andrewapp.model.Recipe;
+import com.example.andrewapp.data.Recipe;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;

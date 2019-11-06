@@ -2,4 +2,8 @@
     <string name="app_name">Recipes</string>
     <string name="logo_as_splash_screen">logo as splash screen</string>
     <string name="recipe_image_content_description">recipe image</string>
+    <string name="sign_in_button_description">Google sign in button</string>
+    <string name="app_logo">Application\'s logo</string>
+    <string name="auth_shared_preferences">auth_shared_prefs</string>
+    <string name="firebase_id_token_key">com.example.andrewapp.FIREBASE_ID_TOKEN</string>
 </resources>
