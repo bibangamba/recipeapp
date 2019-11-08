@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "recipe_table")
-data class Recipe(
+data class RecipeEntity(
     @ColumnInfo(name = "recipe_id")
     var recipeID: Int = 0,
 

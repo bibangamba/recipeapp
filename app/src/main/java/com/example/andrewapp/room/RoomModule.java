@@ -9,6 +9,7 @@ import dagger.Provides;
 import javax.inject.Singleton;
 
 import static com.example.andrewapp.Constants.RECIPE_DATABASE;
+import static com.example.andrewapp.room.Migrations.MIGRATION_1_2;
 
 @Module
 public class RoomModule {
@@ -19,7 +20,7 @@ public class RoomModule {
                 application,
                 RecipeDataBase.class,
                 RECIPE_DATABASE)
-                .fallbackToDestructiveMigration()
+                .addMigrations(MIGRATION_1_2)
                 .build();
     }
 

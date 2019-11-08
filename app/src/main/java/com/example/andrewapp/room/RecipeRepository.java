@@ -1,25 +1,27 @@
 package com.example.andrewapp.room;
 
-import com.example.andrewapp.data.Recipe;
+import com.example.andrewapp.data.RecipeEntity;
 import com.example.andrewapp.data.RecipesResponse;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 import java.util.List;
 
 public interface RecipeRepository {
-    Single<Long> insert(Recipe recipe);
+    Completable insert(RecipeEntity recipe);
 
-    Single<List<Long>> insertRecipes(List<Recipe> recipes);
+    Completable insertRecipes(List<RecipeEntity> recipes);
 
-    Completable update(Recipe recipe);
+    Completable update(RecipeEntity recipe);
 
-    Single<Integer> delete(Recipe recipe);
+    Completable delete(RecipeEntity recipe);
 
-    Single<Integer> deleteAllRecipes();
+    Completable deleteAllRecipes();
 
-    Flowable<List<Recipe>> getAllRecipes();
+    Flowable<List<RecipeEntity>> getAllRecipes();
 
-    Flowable<RecipesResponse> retrieveRecipesFromWebService();
+    Observable<List<RecipeEntity>> recipeSearchLocal(String query);
+
+    Flowable<RecipesResponse> recipeSearchNetwork(String query, int results);
 }

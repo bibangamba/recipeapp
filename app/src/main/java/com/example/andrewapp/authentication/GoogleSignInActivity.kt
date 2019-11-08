@@ -215,7 +215,9 @@ class GoogleSignInActivity : AppCompatActivity() {
     }
 
     private fun switchToHomeScreen() {
+//        val homeActivityIntent = Intent(this, RecipeSearchActivity::class.java)
         val homeActivityIntent = Intent(this, MainActivity::class.java)
+        homeActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(homeActivityIntent)
     }
 }

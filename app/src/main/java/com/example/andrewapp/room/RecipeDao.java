@@ -1,32 +1,37 @@
 package com.example.andrewapp.room;
 
 import androidx.room.*;
-import com.example.andrewapp.data.Recipe;
+import com.example.andrewapp.data.RecipeEntity;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 import java.util.List;
 
 @Dao
 public interface RecipeDao {
     @Insert
-    Single<Long> insert(Recipe recipe);
+    Completable insert(RecipeEntity recipe);
 
     @Insert
-    Single<List<Long>> insertAll(List<Recipe> recipes);
+    Completable insertAll(List<RecipeEntity> recipes);
 
     @Update
-    Completable update(Recipe recipe);
+    Completable update(RecipeEntity recipe);
 
     @Delete
-    Single<Integer> delete(Recipe recipe);
+    Completable delete(RecipeEntity recipe);
 
 
     @Query("SELECT * FROM recipe_table ORDER BY id")
-    Flowable<List<Recipe>> getAllRecipes();
+    Flowable<List<RecipeEntity>> getAllRecipes();
 
     @Query("DELETE FROM recipe_table")
-    Single<Integer> deleteAllRecipes();
+    Completable deleteAllRecipes();
+
+    @Transaction
+    @Query("SELECT recipe_table.* FROM recipe_table " +
+            "JOIN recipe_fts ON (recipe_table.id = recipe_fts.rowid) WHERE recipe_fts MATCH :query")
+    Observable<List<RecipeEntity>> searchRecipes(String query);
 
 }

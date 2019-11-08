@@ -2,6 +2,7 @@ package com.example.andrewapp
 
 object Constants {
     const val BASE_URL = "https://api.spoonacular.com"
+    const val API_KEY = "apiKey"
     const val INSERT = "insert"
     const val UPDATE = "update"
     const val DELETE = "delete"
