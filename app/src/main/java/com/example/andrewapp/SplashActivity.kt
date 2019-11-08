@@ -13,7 +13,10 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            startActivity(Intent(this, GoogleSignInActivity::class.java))
-        }, 3000)
+            val signInIntent = Intent(this, GoogleSignInActivity::class.java)
+            signInIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(signInIntent)
+        }, 1000)
     }
 }

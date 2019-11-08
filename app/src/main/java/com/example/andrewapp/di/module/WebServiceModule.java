@@ -5,13 +5,19 @@ import com.example.andrewapp.service.IdentityProviderAuthService;
 import com.example.andrewapp.service.RecipeAPIService;
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
+import org.jetbrains.annotations.NotNull;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import javax.inject.Singleton;
+
+import static com.example.andrewapp.Constants.API_KEY;
 
 @Module
 public class WebServiceModule {
@@ -24,15 +30,42 @@ public class WebServiceModule {
     @Provides
     @Singleton
     OkHttpClient providesOkHttpClient() {
-        HttpLoggingInterceptor.Level loggingLevel;
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
 
+        addHttpLoggingInterceptor(clientBuilder);
+
+        addApiKey(clientBuilder);
+
+        return clientBuilder.build();
+    }
+
+    private void addApiKey(OkHttpClient.Builder clientBuilder) {
+        clientBuilder.addInterceptor(chain -> {
+            Request requestWithApiKey = addApiKeyToRequest(chain);
+            return chain.proceed(requestWithApiKey);
+        });
+    }
+
+    private void addHttpLoggingInterceptor(OkHttpClient.Builder clientBuilder) {
         if (BuildConfig.DEBUG) {
-            loggingLevel = HttpLoggingInterceptor.Level.BASIC;
-        } else {
-            loggingLevel = HttpLoggingInterceptor.Level.NONE;
+            clientBuilder.addInterceptor(
+                    new HttpLoggingInterceptor()
+                            .setLevel(HttpLoggingInterceptor.Level.BODY));
         }
-        return new OkHttpClient.Builder().addInterceptor(
-                new HttpLoggingInterceptor().setLevel(loggingLevel)).build();
+    }
+
+    @NotNull
+    private Request addApiKeyToRequest(Interceptor.Chain chain) {
+        Request originalRequest = chain.request();
+
+        HttpUrl urlWithApiKey = originalRequest.url()
+                .newBuilder()
+                .addQueryParameter(API_KEY, BuildConfig.RECIPE_API_KEY)
+                .build();
+
+        return originalRequest.newBuilder()
+                .url(urlWithApiKey)
+                .build();
     }
 
     @Provides
