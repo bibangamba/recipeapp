@@ -5,7 +5,7 @@ import com.example.andrewapp.di.component.AppComponent;
 import com.example.andrewapp.di.component.DaggerAppComponent;
 import com.example.andrewapp.di.module.AppModule;
 import com.example.andrewapp.di.module.WebServiceModule;
-import com.example.andrewapp.room.RoomModule;
+import com.example.andrewapp.db.RoomModule;
 import timber.log.Timber;
 
 import static com.example.andrewapp.Constants.BASE_URL;

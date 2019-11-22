@@ -2,7 +2,7 @@ package com.example.andrewapp.di.module;
 
 import android.app.Application;
 import android.content.Context;
-import com.example.andrewapp.room.RoomModule;
+import com.example.andrewapp.db.RoomModule;
 import dagger.Module;
 import dagger.Provides;
 

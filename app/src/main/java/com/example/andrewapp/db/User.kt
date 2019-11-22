@@ -1,4 +1,4 @@
-package com.example.andrewapp.data
+package com.example.andrewapp.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

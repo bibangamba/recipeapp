@@ -1,7 +1,6 @@
-package com.example.andrewapp.room;
+package com.example.andrewapp.data;
 
-import com.example.andrewapp.data.RecipeEntity;
-import com.example.andrewapp.data.RecipesResponse;
+import com.example.andrewapp.db.RecipeEntity;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -21,7 +20,9 @@ public interface RecipeRepository {
 
     Flowable<List<RecipeEntity>> getAllRecipes();
 
-    Observable<List<RecipeEntity>> recipeSearchLocal(String query);
+    Observable recipeSearchLocal(String query);
 
-    Flowable<RecipesResponse> recipeSearchNetwork(String query, int results);
+    void triggerApiSearch(String query, int results, int offset);
+
+    void saveRecipesToLocal(List<RecipeEntity> recipes);
 }

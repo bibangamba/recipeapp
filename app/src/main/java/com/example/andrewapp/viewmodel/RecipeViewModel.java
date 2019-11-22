@@ -1,7 +1,6 @@
 package com.example.andrewapp.viewmodel;
 
-import com.example.andrewapp.data.RecipeEntity;
-import com.example.andrewapp.data.RecipesResponse;
+import com.example.andrewapp.db.RecipeEntity;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -21,8 +20,6 @@ public interface RecipeViewModel {
 
     Completable deleteAllRecipes();
 
-    Observable<List<RecipeEntity>> recipeSearchLocal(String query);
-
-    Flowable<RecipesResponse> recipeSearchNetwork(String query, int numResults);
+    Observable recipeSearchLocal(String query);
 
 }

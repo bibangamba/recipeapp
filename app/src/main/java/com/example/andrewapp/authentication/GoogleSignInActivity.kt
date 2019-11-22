@@ -8,7 +8,7 @@ import com.example.andrewapp.BaseApplication
 import com.example.andrewapp.Constants.GOOGLE_ID_PROVIDER
 import com.example.andrewapp.R
 import com.example.andrewapp.authentication.AuthenticationErrors.*
-import com.example.andrewapp.data.User
+import com.example.andrewapp.db.User
 import com.example.andrewapp.home.MainActivity
 import com.example.andrewapp.viewmodel.viewmodelimpl.AuthViewModelImpl
 import com.google.android.gms.auth.api.signin.GoogleSignIn

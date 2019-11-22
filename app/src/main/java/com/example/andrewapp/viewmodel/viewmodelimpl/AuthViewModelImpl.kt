@@ -2,7 +2,7 @@ package com.example.andrewapp.viewmodel.viewmodelimpl
 
 import androidx.lifecycle.ViewModel
 import com.example.andrewapp.authentication.AuthSharedPreferences
-import com.example.andrewapp.data.User
+import com.example.andrewapp.db.User
 import com.example.andrewapp.service.IdentityProviderAuthService
 import com.example.andrewapp.viewmodel.AuthViewModel
 import io.reactivex.Completable

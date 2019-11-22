@@ -1,4 +1,4 @@
-package com.example.andrewapp.room
+package com.example.andrewapp.db
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase

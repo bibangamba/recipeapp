@@ -1,7 +1,7 @@
 package com.example.andrewapp.service
 
 import com.example.andrewapp.Constants.FIREBASE_IDP_AUTH_URL
-import com.example.andrewapp.data.User
+import com.example.andrewapp.db.User
 import io.reactivex.Flowable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

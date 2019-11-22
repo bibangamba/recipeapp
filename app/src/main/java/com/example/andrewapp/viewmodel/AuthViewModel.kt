@@ -1,6 +1,6 @@
 package com.example.andrewapp.viewmodel
 
-import com.example.andrewapp.data.User
+import com.example.andrewapp.db.User
 import io.reactivex.Completable
 import io.reactivex.Flowable
 

@@ -1,4 +1,4 @@
-package com.example.andrewapp.data
+package com.example.andrewapp.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,10 +6,13 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "recipe_table")
+/**
+ * This class represents a recipe object
+ *
+ */
+@Entity(tableName = "recipe_table"/*, indices = [Index(value = ["recipe_id"], unique = true)]*/)
 data class RecipeEntity(
-    @ColumnInfo(name = "recipe_id")
-    var recipeID: Int = 0,
+    var id: Int = 0,
 
     var title: String = "",
 
@@ -20,14 +23,14 @@ data class RecipeEntity(
 
     @ColumnInfo(name = "image_url")
     @SerializedName("image")
-    var imageName: String = "",
+    var titleImageUrl: String = "",
 
     @Ignore
     @SerializedName("imageUrls")
     var images: List<String> = listOf("")
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
+    var recipe_id: Int = 0
 
     override fun toString(): String {
         return title

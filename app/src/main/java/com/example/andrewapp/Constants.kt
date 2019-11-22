@@ -12,5 +12,6 @@ object Constants {
     const val GOOGLE_ID_PROVIDER = "google.com"
     const val FIREBASE_IDP_AUTH_URL =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=${BuildConfig.FIREBASE_API_KEY}"
+    const val NUM_RECIPE_RESULTS_DEFAULT = 20
 
 }
