@@ -9,8 +9,8 @@ import java.util.List;
 
 @Dao
 public interface RecipeDao {
-    @Insert
-    Completable insert(RecipeEntity recipe);
+//    @Insert
+//    Completable insert(RecipeEntity recipe);
 
     @Insert
     Completable insertAll(List<RecipeEntity> recipes);
