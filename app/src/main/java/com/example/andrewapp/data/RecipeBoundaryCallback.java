@@ -42,7 +42,7 @@ public class RecipeBoundaryCallback extends PagedList.BoundaryCallback<RecipeEnt
      * Triggered when all the items in the database has been loaded.
      * So we query the API to replenish the database.
      *
-     * @param itemAtEnd the last recipe entity that was loaded from the database
+     * @param itemAtEnd the last findRecipe entity that was loaded from the database
      */
     @Override
     public void onItemAtEndLoaded(@NonNull RecipeEntity itemAtEnd) {

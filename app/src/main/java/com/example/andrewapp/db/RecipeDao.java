@@ -1,19 +1,27 @@
 package com.example.andrewapp.db;
 
 import androidx.paging.DataSource;
-import androidx.room.*;
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import androidx.room.Transaction;
+import androidx.room.Update;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+
 @Dao
 public interface RecipeDao {
-//    @Insert
-//    Completable insert(RecipeEntity recipe);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Completable insert(RecipeEntity recipe);
 
-    @Insert
-    Completable insertAll(List<RecipeEntity> recipes);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Completable insert(List<RecipeEntity> recipes);
 
     @Update
     Completable update(RecipeEntity recipe);
@@ -28,14 +36,14 @@ public interface RecipeDao {
     @Query("DELETE FROM recipe_table")
     Completable deleteAllRecipes();
 
-//    @Transaction
-//    @Query("SELECT recipe_table.* FROM recipe_table " +
-//            "JOIN recipe_fts ON (recipe_table.id = recipe_fts.rowid) WHERE recipe_fts MATCH :query")
-//    Observable<PagedList<RecipeEntity>> searchRecipes(String query);
+    @Transaction
+    @Query("SELECT * FROM recipe_table WHERE ( title LIKE :query)")
+    Observable<List<RecipeEntity>> searchRecipesRx(String query);
 
     @Transaction
-    @Query("SELECT recipe_table.* FROM recipe_table " +
-            "JOIN recipe_fts ON (recipe_table.id = recipe_fts.rowid) WHERE recipe_fts MATCH :query")
+//    @Query("SELECT recipe_table.* FROM recipe_table " +
+//            "JOIN recipe_fts ON (recipe_table.id = recipe_fts.rowid) WHERE recipe_fts MATCH :query")
+    @Query("SELECT * FROM recipe_table WHERE ( title LIKE :query)")
     DataSource.Factory<Integer, RecipeEntity> searchRecipes(String query);
 
 }

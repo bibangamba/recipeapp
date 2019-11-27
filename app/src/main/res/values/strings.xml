@@ -7,4 +7,12 @@
     <string name="auth_shared_preferences">auth_shared_prefs</string>
     <string name="firebase_id_token_key">com.example.andrewapp.FIREBASE_ID_TOKEN</string>
     <string name="search_hint">Search recipes</string>
+    <string name="no_recipes_found">Couldn\'t find that recipe 😓</string>
+    <string name="search_for_recipe">Search for a recipe</string>
+    <string name="loading">Loading…</string>
+    <string name="unknown">\?</string>
+    <string name="ready_in_one_minute_text">%1$d minute to prepare</string>
+    <string name="ready_in_multiple_minutes_text">%1$d minutes to prepare</string>
+    <string name="feeds_text">Feeds %1$d </string>
+    <string name="recipe_title_text">Neapolitan Pizza and Honey Whole Wheat Dough</string>
 </resources>

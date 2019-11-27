@@ -2,13 +2,15 @@ package com.example.andrewapp.di.module;
 
 import android.app.Application;
 import android.content.Context;
-import com.example.andrewapp.db.RoomModule;
+
+import com.example.andrewapp.db.DataModule;
+
 import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Singleton;
 
-@Module(includes = {WebServiceModule.class, RoomModule.class, ViewModelModule.class})
+@Module(includes = {WebServiceModule.class, DataModule.class, ViewModelModule.class})
 public class AppModule {
     private Application mApplication;
 

@@ -44,7 +44,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public Completable insertRecipes(List<RecipeEntity> recipes) {
         Timber.i("###### DAO instance on multi insert: %s", mRecipeDao.hashCode());
 
-        return mRecipeDao.insertAll(recipes)
+        return mRecipeDao.insert(recipes)
                 .subscribeOn(Schedulers.io());
     }
 

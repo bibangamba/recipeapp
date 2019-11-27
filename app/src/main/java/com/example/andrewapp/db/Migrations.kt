@@ -10,11 +10,11 @@ object Migrations {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL(
                 "CREATE VIRTUAL TABLE IF NOT EXISTS `recipe_fts` USING FTS4(" +
-                        "`recipe`, content=`recipe_table`)"
+                        "`findRecipe`, content=`recipe_table`)"
             )
 
             //database.execSQL("INSERT INTO recipe_fts(recipe_fts) VALUES ('rebuild')")
-            database.execSQL("INSERT INTO recipe_fts (`rowid`, `recipe`) SELECT id, title FROM recipe_table")
+            database.execSQL("INSERT INTO recipe_fts (`rowid`, `findRecipe`) SELECT id, title FROM recipe_table")
         }
 
     }

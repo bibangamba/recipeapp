@@ -1,23 +1,26 @@
 package com.example.andrewapp.db;
 
 import android.app.Application;
+
 import androidx.room.Room;
+
 import com.example.andrewapp.data.RecipeRepository;
 import com.example.andrewapp.data.RecipeRepositoryImpl;
 import com.example.andrewapp.service.RecipeAPIService;
-import dagger.Module;
-import dagger.Provides;
 
 import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 
 import static com.example.andrewapp.Constants.RECIPE_DATABASE;
 import static com.example.andrewapp.db.Migrations.MIGRATION_1_2;
 
 @Module
-public class RoomModule {
+public class DataModule {
     private RecipeDataBase mRecipeDatabase;
 
-    public RoomModule(Application application) {
+    public DataModule(Application application) {
         this.mRecipeDatabase = Room.databaseBuilder(
                 application,
                 RecipeDataBase.class,
@@ -41,7 +44,7 @@ public class RoomModule {
     @Provides
     @Singleton
     RecipeRepository providesRecipeRepository(RecipeDao recipeDao, RecipeAPIService recipeAPIService) {
-        return new  RecipeRepositoryImpl(recipeDao, recipeAPIService) {
+        return new RecipeRepositoryImpl(recipeDao, recipeAPIService) {
         };
     }
 

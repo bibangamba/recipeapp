@@ -12,7 +12,7 @@
             android:theme="@style/AppTheme">
         <activity android:name=".recipesearch.RecipeSearchActivity"/>
 
-        <activity android:name=".home.MainActivity"
+        <activity android:name=".recipesearch.ui.SearchActivity"
                   android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>

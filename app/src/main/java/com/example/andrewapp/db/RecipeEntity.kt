@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
- * This class represents a recipe object
+ * This class represents a findRecipe object
  *
  */
 @Entity(tableName = "recipe_table"/*, indices = [Index(value = ["recipe_id"], unique = true)]*/)

@@ -9,7 +9,7 @@ import com.example.andrewapp.Constants.GOOGLE_ID_PROVIDER
 import com.example.andrewapp.R
 import com.example.andrewapp.authentication.AuthenticationErrors.*
 import com.example.andrewapp.db.User
-import com.example.andrewapp.home.MainActivity
+import com.example.andrewapp.recipesearch.ui.SearchActivity
 import com.example.andrewapp.viewmodel.viewmodelimpl.AuthViewModelImpl
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -216,7 +216,7 @@ class GoogleSignInActivity : AppCompatActivity() {
 
     private fun switchToHomeScreen() {
 //        val homeActivityIntent = Intent(this, RecipeSearchActivity::class.java)
-        val homeActivityIntent = Intent(this, MainActivity::class.java)
+        val homeActivityIntent = Intent(this, SearchActivity::class.java)
         homeActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(homeActivityIntent)
     }

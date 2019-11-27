@@ -2,10 +2,13 @@ package com.example.andrewapp.di.module;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.andrewapp.di.multibindingkey.ViewModelKey;
+import com.example.andrewapp.recipesearch.viewmodel.RecipeViewModelLD;
 import com.example.andrewapp.viewmodel.RecipeViewModelFactory;
 import com.example.andrewapp.viewmodel.viewmodelimpl.AuthViewModelImpl;
 import com.example.andrewapp.viewmodel.viewmodelimpl.RecipeViewModelImpl;
+
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -24,5 +27,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AuthViewModelImpl.class)
     abstract ViewModel bindsAuthViewModel(AuthViewModelImpl authViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RecipeViewModelLD.class)
+    abstract ViewModel bindsRecipeViewModelLD(RecipeViewModelLD recipeViewModelLD);
 
 }

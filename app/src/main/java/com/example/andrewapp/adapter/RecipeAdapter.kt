@@ -32,7 +32,7 @@ internal class RecipeAdapter(private val mOnItemClickListener: OnItemClickListen
         holder.titleTV.text = title
 
         Glide.with(holder.itemView.context)
-            .load(IMAGES_BASE_URL+titleImageUrl)
+            .load(IMAGES_BASE_URL + titleImageUrl)
             .into(holder.recipeIV)
 
         holder.itemView.setOnClickListener { v -> mOnItemClickListener.onItemClick(position) }
@@ -56,7 +56,7 @@ internal class RecipeAdapter(private val mOnItemClickListener: OnItemClickListen
         val recipeIV = itemView.recipe_list_imageview
         val titleTV = itemView.recipeTitle
         val servingsTV = itemView.servings
-        val prepareTimeTV = itemView.timeToPrepare
+        val prepareTimeTV = itemView.time_to_prepare
     }
 
     companion object {

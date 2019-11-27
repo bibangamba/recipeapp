@@ -31,7 +31,7 @@ public class RecipeViewModelFactory implements ViewModelProvider.Factory {
             }
         }
         if (creator == null) {
-            throw new IllegalArgumentException("unknown model class " + modelClass);
+            throw new IllegalArgumentException("unknown viewmodel class " + modelClass);
         }
         try {
             return (T) creator.get();
