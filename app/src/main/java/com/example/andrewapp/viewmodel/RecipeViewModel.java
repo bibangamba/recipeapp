@@ -1,20 +1,19 @@
 package com.example.andrewapp.viewmodel;
 
-import android.app.Application;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 import com.example.andrewapp.model.Recipe;
 import com.example.andrewapp.room.RecipeRepository;
 
+import javax.inject.Inject;
 import java.util.List;
 
-public class RecipeViewModel extends AndroidViewModel {
-    private RecipeRepository mRecipeRepository;
+public class RecipeViewModel extends ViewModel {
+    RecipeRepository mRecipeRepository;
 
-    public RecipeViewModel(@NonNull Application application) {
-        super(application);
-        mRecipeRepository = new RecipeRepository(application);
+    @Inject
+    public RecipeViewModel(RecipeRepository repo) {
+        this.mRecipeRepository = repo;
     }
 
     public void insert(Recipe recipe) {
