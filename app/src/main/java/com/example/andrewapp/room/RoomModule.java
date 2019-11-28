@@ -38,7 +38,7 @@ public class RoomModule {
     @Provides
     @Singleton
     RecipeRepository providesRecipeRepository(RecipeDao recipeDao, RecipeAPIService recipeAPIService) {
-        return new RecipeRepository(recipeDao, recipeAPIService);
+        return new RecipeRepositoryImpl(recipeDao, recipeAPIService);
     }
 
 }
