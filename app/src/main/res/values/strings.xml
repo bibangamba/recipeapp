@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AndrewApp</string>
+    <string name="app_name">Recipes</string>
+    <string name="logo_as_splash_screen">logo as splash screen</string>
 </resources>
