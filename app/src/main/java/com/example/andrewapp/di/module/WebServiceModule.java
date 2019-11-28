@@ -1,6 +1,7 @@
 package com.example.andrewapp.di.module;
 
 import com.example.andrewapp.BuildConfig;
+import com.example.andrewapp.service.IdentityProviderAuthService;
 import com.example.andrewapp.service.RecipeAPIService;
 import dagger.Module;
 import dagger.Provides;
@@ -22,7 +23,7 @@ public class WebServiceModule {
 
     @Provides
     @Singleton
-    public OkHttpClient providesOkHttpClient() {
+    OkHttpClient providesOkHttpClient() {
         HttpLoggingInterceptor.Level loggingLevel;
 
         if (BuildConfig.DEBUG) {
@@ -35,7 +36,7 @@ public class WebServiceModule {
     }
 
     @Provides
-    public Retrofit providesRetrofitInstance(OkHttpClient client) {
+    Retrofit providesRetrofitInstance(OkHttpClient client) {
         return new Retrofit.Builder()
                 .client(client)
                 .baseUrl(mBaseUrl)
@@ -45,7 +46,12 @@ public class WebServiceModule {
     }
 
     @Provides
-    public RecipeAPIService providesRecipeAPIService(Retrofit retrofit) {
+    RecipeAPIService providesRecipeAPIService(Retrofit retrofit) {
         return retrofit.create(RecipeAPIService.class);
+    }
+
+    @Provides
+    IdentityProviderAuthService providesGoogleAuthServiceService(Retrofit retrofit) {
+        return retrofit.create(IdentityProviderAuthService.class);
     }
 }
